@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreateRoomDialog</class>
+ <widget class="QDialog" name="CreateRoomDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>400</width><height>300</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create Room</string>
+  </property>
+  <layout class="QFormLayout">
+   <item row="0" column="0">
+    <widget class="QLabel"><property name="text"><string>Room Name:</string></property></widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="nameEdit"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel"><property name="text"><string>Description:</string></property></widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QTextEdit" name="descEdit"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel"><property name="text"><string>Max Participants:</string></property></widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QSpinBox" name="maxParticipantsSpinBox">
+     <property name="minimum"><number>2</number></property>
+     <property name="maximum"><number>100</number></property>
+     <property name="value"><number>10</number></property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel"><property name="text"><string>Duration (seconds):</string></property></widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QSpinBox" name="durationSpinBox">
+     <property name="maximum"><number>86400</number></property>
+     <property name="value"><number>3600</number></property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender><signal>accepted()</signal>
+   <receiver>CreateRoomDialog</receiver><slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender><signal>rejected()</signal>
+   <receiver>CreateRoomDialog</receiver><slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>

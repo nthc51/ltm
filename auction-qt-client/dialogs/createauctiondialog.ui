@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CreateAuctionDialog</class>
+ <widget class="QDialog" name="CreateAuctionDialog">
+  <property name="geometry">
+   <rect><x>0</x><y>0</y><width>400</width><height>400</height></rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create Auction</string>
+  </property>
+  <layout class="QFormLayout">
+   <item row="0" column="0">
+    <widget class="QLabel"><property name="text"><string>Title:</string></property></widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLineEdit" name="titleEdit"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel"><property name="text"><string>Description:</string></property></widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QTextEdit" name="descEdit"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel"><property name="text"><string>Start Price (VND):</string></property></widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QDoubleSpinBox" name="startPriceSpinBox">
+     <property name="maximum"><double>999999999.0</double></property>
+    </widget>
+   </item>
+   <item row="3" column="0">
+    <widget class="QLabel"><property name="text"><string>Buy Now Price (VND):</string></property></widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QDoubleSpinBox" name="buyNowPriceSpinBox">
+     <property name="maximum"><double>999999999.0</double></property>
+    </widget>
+   </item>
+   <item row="4" column="0">
+    <widget class="QLabel"><property name="text"><string>Min Increment (VND):</string></property></widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QDoubleSpinBox" name="minIncrementSpinBox">
+     <property name="value"><double>100000.0</double></property>
+     <property name="maximum"><double>999999999.0</double></property>
+    </widget>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel"><property name="text"><string>Duration (seconds):</string></property></widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QSpinBox" name="durationSpinBox">
+     <property name="maximum"><number>86400</number></property>
+     <property name="value"><number>180</number></property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender><signal>accepted()</signal>
+   <receiver>CreateAuctionDialog</receiver><slot>accept()</slot>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender><signal>rejected()</signal>
+   <receiver>CreateAuctionDialog</receiver><slot>reject()</slot>
+  </connection>
+ </connections>
+</ui>
