@@ -684,7 +684,7 @@ int db_buy_now(int auction_id, int user_id)
     // ✅ 1. BEGIN TRANSACTION
     sqlite3_exec(g_db, "BEGIN TRANSACTION;", NULL, NULL, NULL);
 
-    // ✅ 2. GET auction info FIRST (buy_now_price, seller_id, status)
+    // ✅ 2. GET auction info (price, seller, status)
     char *sql = "SELECT buy_now_price, seller_id, status FROM auctions WHERE auction_id = ?";
     sqlite3_prepare_v2(g_db, sql, -1, &stmt, NULL);
     sqlite3_bind_int(stmt, 1, auction_id);
@@ -739,7 +739,7 @@ int db_buy_now(int auction_id, int user_id)
         return -3;
     }
 
-    // ✅ 6. UPDATE auction status
+    // ✅ 6. UPDATE auction status to ended
     sql = "UPDATE auctions SET status = 'ended', current_price = ?, winner_id = ?, win_method = 'buy_now' WHERE auction_id = ?";
     sqlite3_prepare_v2(g_db, sql, -1, &stmt, NULL);
     sqlite3_bind_double(stmt, 1, buy_now_price);
@@ -764,7 +764,7 @@ int db_buy_now(int auction_id, int user_id)
     sqlite3_step(stmt);
     sqlite3_finalize(stmt);
 
-    // ✅ 9. COMMIT
+    // ✅ 9. COMMIT transaction
     sqlite3_exec(g_db, "COMMIT;", NULL, NULL, NULL);
 
     printf("[DB] Buy Now: Auction %d, Buyer: %d, Price: %.2f, Seller: %d\n",

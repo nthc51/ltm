@@ -727,12 +727,14 @@ void handle_search_auctions(int client_socket, char *data) {
         
         User winner;
         if (db_get_user(user_id, &winner) == 0) {
+            printf("[BUY_NOW] Broadcasting winner to room %d: %s won auction %d\n", room_id, winner.username, auction_id);
             broadcast_auction_winner(room_id, auction_id, auction.title,
                                    winner.username, auction.buy_now_price, "Buy Now");
         }
         
         sprintf(response, "BUY_NOW_SUCCESS|%d\n", auction_id);
         send(client_socket, response, strlen(response), 0);
+        printf("[BUY_NOW] Sent response to buyer (socket: %d)\n", client_socket);
         
         printf("[INFO] Buy now: User %d, Auction %d\n", user_id, auction_id);
         

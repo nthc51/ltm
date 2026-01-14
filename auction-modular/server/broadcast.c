@@ -18,6 +18,7 @@ void broadcast_to_room(int room_id, const char *message, int exclude_socket) {
             g_clients[i].current_room_id == room_id &&
             g_clients[i].socket != exclude_socket) {
             
+            printf("[BROADCAST] Sending to client %d (socket %d, room %d)\n", i, g_clients[i].socket, g_clients[i].current_room_id);
             send(g_clients[i].socket, message, strlen(message), 0);
             sent_count++;
         }
